@@ -3,17 +3,26 @@
 // create an array of strings with a common theme
 var animals = ["cat", "dog", "otter"];
 
+// function for displaying buttons for each string in the array
+function renderButtons() {
+
+	// empty the #animals div
+	$("#animalButtons").empty();
+
 // dynamically create buttons and display them in html
-for (var i = 0; i<animals.length; i++) {
-	var themeButton = $("<button>");
-	themeButton.text(animals[i]);
-	themeButton.addClass("btn btn-primary");
-	themeButton.attr("data-animal", animals[i]);
-	$("#animalButtons").append(themeButton);
+	for (var i = 0; i<animals.length; i++) {
+		var themeButton = $("<button>");
+		themeButton.text(animals[i]);
+		themeButton.addClass("btn btn-primary");
+		themeButton.attr("data-animal", animals[i]);
+		$("#animalButtons").append(themeButton);
+	}
 }
 
 // click event function for all buttons
-$("button").on("click", function() {
+ function displayGifs() {
+ 	// console.log("test");
+ 	
 	// empty the #animals div
 	$("#animals").empty();
 
@@ -21,7 +30,7 @@ $("button").on("click", function() {
 	// test
 	// console.log(animal);
 
-	// queryURL using the var animal value
+	// // queryURL using the var animal value
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
     animal + "&api_key=dc6zaTOxFJmzC&limit=10";
 
@@ -106,4 +115,24 @@ $("button").on("click", function() {
     		}
     	})
     })
+}
+
+// function to push user input to the arry when user clicks submit
+$("#addAnimal").on("click", function(event) {
+	event.preventDefault();
+
+	var animal = $("#animal-input").val().trim();
+	// test
+	// console.log(animal);
+	animals.push(animal);
+	// test
+	// console.log(animals);
+
+	// call the renderButtons function to display initial buttons + user input
+	renderButtons();
 })
+// 
+$(document).on("click", "button", displayGifs);
+
+// display initial buttons
+renderButtons();
