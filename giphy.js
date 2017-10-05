@@ -22,7 +22,7 @@ function renderButtons() {
 // click event function for all buttons
  function displayGifs() {
  	// console.log("test");
- 	
+
 	// empty the #animals div
 	$("#animals").empty();
 
@@ -56,6 +56,9 @@ function renderButtons() {
 
     		// create and store a div tag for each item
     		var dataDiv = $("<div>");
+
+    		// assign a class to the div in order to easily select all dynamic gif divs using CSS
+    		dataDiv.addClass("gif-div");
 
     		// create a p tag with each results item's rating
     		var p = $("<p>").text("Rating: " + results[j].rating);
